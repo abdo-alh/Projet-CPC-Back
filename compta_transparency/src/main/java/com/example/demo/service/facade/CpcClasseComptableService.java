@@ -16,4 +16,5 @@ public interface CpcClasseComptableService {
 
 	    public void deleteById(Long id);
 
+	    public int update(CpcClasseComptable classeComptable);
 }

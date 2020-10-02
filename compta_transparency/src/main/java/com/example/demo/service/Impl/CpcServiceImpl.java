@@ -37,32 +37,24 @@ public class CpcServiceImpl implements CpcService {
 	@Override
 	public Cpc save(Cpc cpc) {
 
-		if (cpc == null) {
-			return null;
-		} else {
+		//if (cpc == null) {
+			//return null;
+		//} else {
 			cpcDao.save(cpc);
-			return cpc;
-		}
+			//return cpc;
+		//}
 	}
 
-	@Override
-	public Cpc saveWithCpcSousClasses(Cpc cpc) {
-
-		if (cpc == null) {
-			return null;
-		} else {
-			if (cpc.getCpcSousClasses().isEmpty()) {
-				return null;
-			} else {
-				cpcDao.save(cpc);
-				for (CpcSousClasse cpcsousclasse : cpc.getCpcSousClasses()) {
-					cpcsousclasse.setCpc(cpc);
-					cpcsousclasseService.saveWithCpcClasseComptables(cpcsousclasse);
-				}
-				return cpc;
-			}
-		}
-	}
+	/*
+	 * @Override public Cpc saveWithCpcSousClasses(Cpc cpc) {
+	 * 
+	 * if (cpc == null) { return null; } else { if
+	 * (cpc.getCpcSousClasses().isEmpty()) { return null; } else { cpcDao.save(cpc);
+	 * for (CpcSousClasse cpcsousclasse : cpc.getCpcSousClasses()) {
+	 * cpcsousclasse.setCpc(cpc);
+	 * cpcsousclasseService.saveWithCpcClasseComptables(cpcsousclasse); } return
+	 * cpc; } } }
+	 */
 
 	@Override
 	public List<Cpc> findAll() {
@@ -74,8 +66,9 @@ public class CpcServiceImpl implements CpcService {
 		return cpcDao.getOne(id);
 	}
 
+	@Transactional
 	@Override
-	public int delete(Cpc cpc) {
+	public int deleteByd(Cpc cpc) {
 		if (cpc == null) {
 			return -1;
 		} else {
@@ -85,10 +78,13 @@ public class CpcServiceImpl implements CpcService {
 		}
 	}
 
-	@Transactional
-	@Override
-	public void deleteById(Long id) {
-		cpcDao.deleteById(id);
-	}
 
+	public int update(Cpc cpc) {
+		if(cpcDao.findById(cpc.getId()) == null ) {
+			return -1;
+		} else {
+			cpcDao.save(cpc);
+			return 1;
+		}
+	}
 }

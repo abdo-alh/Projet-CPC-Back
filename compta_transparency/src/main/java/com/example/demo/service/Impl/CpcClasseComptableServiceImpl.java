@@ -53,5 +53,14 @@ public class CpcClasseComptableServiceImpl implements CpcClasseComptableService{
 		cpcclassecomptableDao.deleteById(id);
 	}
 
+	public int update(CpcClasseComptable cpcClasseComptable) {
+		if(cpcclassecomptableDao.findById(cpcClasseComptable.getId()) == null) {
+			return -1;
+		}
+		else {
+			cpcclassecomptableDao.save(cpcClasseComptable);
+			return 1;
+		}
+	}
 	
 }

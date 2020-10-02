@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
 
 @Entity
 public class Cpc {
@@ -17,7 +18,10 @@ public class Cpc {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	private int numero;
+	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateDebut;
+	@Temporal(javax.persistence.TemporalType.DATE)
 	private Date dateFin;
 	@Column(precision = 16, scale = 4)
 	private BigDecimal montant;
@@ -28,8 +32,6 @@ public class Cpc {
     private BigDecimal totalProduit;
     @Column(precision = 16, scale = 4)
     private BigDecimal resultat;
-	@OneToMany(mappedBy = "cpc")
-	private List<CpcSousClasse> cpcSousClasses;
 	
 	public Long getId() {
 		return id;

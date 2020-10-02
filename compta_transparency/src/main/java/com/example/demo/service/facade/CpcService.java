@@ -18,5 +18,7 @@ public interface CpcService {
 	public int delete(Cpc cpc);
 
 	public void deleteById(Long id);
+	
+	public int update(Cpc cpc);
 
 }

@@ -20,23 +20,15 @@ public class CpcSousClasseServiceImpl implements CpcSousClasseService{
 	
 	@Autowired
 	private CpcSousClasseDao cpcsousclasseDao;
-
-	@Override
-	public CpcSousClasse saveWithCpcClasseComptables(CpcSousClasse cpcsousclasse) {
-		if (cpcsousclasse == null) {
-			return null;
-		} else {
-			if (cpcsousclasse.getCpcClasseComptables().isEmpty()) {
-				return null;
-			} else {
-				cpcsousclasseDao.save(cpcsousclasse);
-				for (CpcClasseComptable cpcclassecomptable : cpcsousclasse.getCpcClasseComptables()) {
-					cpcclassecomptable.setCpcSousClasse(cpcsousclasse);
-					cpcclassecomptableService.save(cpcclassecomptable);
-				}
-				return cpcsousclasse;
-			}
-		}
+	/*
+	 * @Override public CpcSousClasse saveWithCpcClasseComptables(CpcSousClasse
+	 * cpcsousclasse) { if (cpcsousclasse == null) { return null; } else { if
+	 * (cpcsousclasse.getCpcClasseComptables().isEmpty()) { return null; } else {
+	 * cpcsousclasseDao.save(cpcsousclasse); for (CpcClasseComptable
+	 * cpcclassecomptable : cpcsousclasse.getCpcClasseComptables()) {
+	 * cpcclassecomptable.setCpcSousClasse(cpcsousclasse);
+	 * cpcclassecomptableService.save(cpcclassecomptable); } return cpcsousclasse; }
+	 */}
 	}
 	
 	@Override
@@ -75,4 +67,13 @@ public class CpcSousClasseServiceImpl implements CpcSousClasseService{
 		cpcsousclasseDao.deleteById(id);
 	}
 
+	public int update(CpcSousClasse cpcSousClasse) {
+		if(cpcsousclasseDao.findById(cpcSousClasse.getId()) == null) {
+			return -1;
+		}
+		else {
+			cpcsousclasseDao.save(cpcSousClasse);
+			return 1;
+		}
+	}
 }

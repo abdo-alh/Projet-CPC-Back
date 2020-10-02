@@ -19,4 +19,5 @@ public interface CpcSousClasseService {
 
     public void deleteById(Long id);
 
+    public int update(CpcSousClasse cpcSousClasse);
 }

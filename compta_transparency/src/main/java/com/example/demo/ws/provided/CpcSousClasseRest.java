@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,7 @@ public class CpcSousClasseRest {
         return cpcSousClasseService.save(cpcSousClasse);
     }
 
+    @Transactional
     @DeleteMapping("/id/{id}")
     public void deleteById(@PathVariable Long id) {
         cpcSousClasseService.deleteById(id);
@@ -38,4 +40,8 @@ public class CpcSousClasseRest {
         return cpcSousClasseService.findAll();
     }
 
+    @PutMapping("/update/")
+	public int update(@RequestBody CpcSousClasse cpcSousClasse) {
+		return cpcSousClasseService.update(cpcSousClasse);
+	}
 }
